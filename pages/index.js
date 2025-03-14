@@ -1,3 +1,5 @@
+/*import { initialTodos /*, validationConfig} from "../utils/constants.js";*/
+
 const initialTodos = [
   {
     id: "7cec7373-681b-49d9-b065-021d61a69d03",
@@ -44,6 +46,10 @@ const closeModal = (modal) => {
 };
 
 // The logic in this function should all be handled in the Todo class.
+class Todo {
+  constructor(data, todoSelector) {}
+}
+
 const generateTodo = (data) => {
   const todoElement = todoTemplate.content
     .querySelector(".todo")

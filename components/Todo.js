@@ -4,6 +4,21 @@ class Todo {
     this._templateElement = document.querySelector(selector);
   }
 
+  _getDueDateEl() {
+    this._dueDate = new Date(this._data.date); //I was putting this._ on both data and date "(data.date)", which was the bug...
+
+    if (!isNaN(this._dueDate)) {
+      this._todoDate.textContent = `Due: ${this._dueDate.toLocaleString(
+        "en-US",
+        {
+          year: "numeric",
+          month: "short",
+          day: "numeric",
+        }
+      )}`;
+    }
+  }
+
   _setEventListeners() {
     this._todoDeleteBtn.addEventListener("click", () => {
       this._todoDeleteBtn.remove();
@@ -35,6 +50,7 @@ class Todo {
 
     this._generateCheckboxEl();
     this._setEventListeners();
+    this._getDueDateEl();
 
     return this._todoElement;
   }

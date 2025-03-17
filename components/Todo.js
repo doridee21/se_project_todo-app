@@ -5,7 +5,7 @@ class Todo {
   }
 
   _getDueDateEl() {
-    this._dueDate = new Date(this._data.date); //I was putting this._ on both data and date "(data.date)", which was the bug...
+    this._dueDate = new Date(this._data.date);
 
     if (!isNaN(this._dueDate)) {
       this._todoDate.textContent = `Due: ${this._dueDate.toLocaleString(

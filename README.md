@@ -1,17 +1,20 @@
 # Simple Todo App
 
-Give a brief description of the project here. Feel free to give it a different name.
+Is a simple TODO application; available on web and mobile devices.
 
 ## Functionality
 
-Give a more detailed explanation of the project and its functionality.
+TODO App is a simple todo web application. Users can add and delete todo tasks, add a due date to each task, check off tasks as they're completed and keep track of non-completed and completed tasks.
 
 ## Technology
 
-Give a description of the technologies and techniques used. Pictures, GIFs, or screenshots that detail the project features are recommended.
+- HTML
+- CSS
+- JavaScript
+- Modules
 
 ## Deployment
 
 This project is deployed on GitHub Pages:
 
-- ADD LINK HERE
+- [Deployment Link](https://doridee21.github.io/se_project_todo-app/)

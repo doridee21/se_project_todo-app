@@ -75,7 +75,7 @@ class FormValidator {
 
   resetValidation() {
     this._formEl.reset();
-    this._buttonElement.disabled = true;
+    this._toggleButtonState();
   }
 }
 

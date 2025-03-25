@@ -8,16 +8,16 @@ class FormValidator {
     this._formEl = formEl;
   }
 
-  _showInputError(inputElement) {
+  _showInputError(inputElement, errorMessage) {
     this._errorElementId = `#${inputElement.id}-error`;
     this._errorElement = this._formEl.querySelector(this._errorElementId);
     inputElement.classList.add(this._inputErrorClass);
-    this._errorElement.textContent = this._errorMessage;
+    this._errorElement.textContent = errorMessage;
     this._errorElement.classList.add(this._errorClass);
   }
 
   _hideInputError(inputElement) {
-    this._errorElementId = `#${inputElement.id}/*-error`;
+    this._errorElementId = `#${inputElement.id}-error`;
     this._errorElement = this._formEl.querySelector(this._errorElementId);
     inputElement.classList.remove(this._inputErrorClass);
     this._errorElement.classList.remove(this._errorClass);
@@ -71,6 +71,11 @@ class FormValidator {
       evt.preventDefault();
     });
     this._setEventListeners();
+  }
+
+  resetValidation() {
+    this._formEl.reset();
+    this._buttonElement.disabled = true;
   }
 }
 

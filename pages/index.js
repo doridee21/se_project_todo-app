@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from "https://jspm.dev/uuid";
 import { initialTodos, validationConfig } from "../utils/constants.js";
 import Todo from "../components/Todo.js";
 import FormValidator from "../components/FormValidator.js";
+import Section from "../components/Section.js";
 
 const addTodoButton = document.querySelector(".button_action_add");
 const addTodoPopup = document.querySelector("#add-todo-popup");
@@ -10,19 +11,37 @@ const addTodoForm = document.forms["add-todo-form"];
 const addTodoCloseBtn = addTodoPopup.querySelector(".popup__close");
 const todosList = document.querySelector(".todos__list");
 
+// The logic in this function should all be handled in the Todo class.
+const generateTodo = (data) => {
+  const todo = new Todo(data, "#todo-template");
+  const todoElement = todo.getView();
+  return todoElement;
+};
+
+const addItem = (item) => {
+  const todoElement = generateTodo(item);
+  todoList.addItem(todoElement);
+};
+
+const todoList = new Section({
+  items: initialTodos, // pass initial todos
+  renderer: (item) => {
+    const todo = generateTodo(item); // generate todo item
+    todosList.append(todo); // add it to the todo list
+    // check to see if correct // refer to the forEach loop in this file
+  },
+  containerSelector: ".todos__list",
+});
+// call section instance's renderItems method
+
+todoList.renderItems();
+
 const openModal = (modal) => {
   modal.classList.add("popup_visible");
 };
 
 const closeModal = (modal) => {
   modal.classList.remove("popup_visible");
-};
-
-// The logic in this function should all be handled in the Todo class.
-const generateTodo = (data) => {
-  const todo = new Todo(data, "#todo-template");
-  const todoElement = todo.getView();
-  return todoElement;
 };
 
 const renderTodo = (item) => {
@@ -49,13 +68,10 @@ addTodoForm.addEventListener("submit", (evt) => {
 
   const id = uuidv4();
   const values = { name, date, id };
-  renderTodo(values);
+  //renderTodo(values); //use addItem method instead
+  addItem(values); // check to see if correct
   closeModal(addTodoPopup);
   newTodoValidator.resetValidation();
-});
-
-initialTodos.forEach((item) => {
-  renderTodo(item);
 });
 
 const newTodoValidator = new FormValidator(validationConfig, addTodoForm);

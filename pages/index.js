@@ -5,6 +5,7 @@ import Todo from "../components/Todo.js";
 import FormValidator from "../components/FormValidator.js";
 import Section from "../components/Section.js";
 import PopupWithForm from "../components/PopupWithForm.js";
+//import Popup from "./Popup.js";
 
 const addTodoButton = document.querySelector(".button_action_add");
 const addTodoPopupEl = document.querySelector("#add-todo-popup");
@@ -16,6 +17,7 @@ const addTodoPopup = new PopupWithForm({
   popupSelector: "#add-todo-popup",
   handleFormSubmit: () => {},
 });
+addTodoPopup.setEventListeners();
 
 // The logic in this function should all be handled in the Todo class.
 const generateTodo = (data) => {
@@ -42,26 +44,36 @@ const todoList = new Section({
 
 todoList.renderItems();
 
-const openModal = (modal) => {
-  modal.classList.add("popup_visible");
-};
+//const openModal = (modal) => {
+//  modal.classList.add("popup_visible");
+//};
 
-const closeModal = (modal) => {
-  modal.classList.remove("popup_visible");
-};
+//const closeModal = (modal) => {
+//  modal.classList.remove("popup_visible");
+//};
 
 const renderTodo = (item) => {
   const todo = generateTodo(item);
   todosList.append(todo);
 };
 
+//function handleEscapeClose(evt) {
+//  if (evt.key === "Escape") {
+//    // find the currently opened modal
+//    // and close it
+//    addTodoPopup.close();
+//  }
+//}
+
 addTodoButton.addEventListener("click", () => {
-  openModal(addTodoPopupEl);
+  //openModal(addTodoPopupEl);
+  addTodoPopup.open();
 });
 
-addTodoCloseBtn.addEventListener("click", () => {
-  closeModal(addTodoPopupEl);
-});
+//addTodoCloseBtn.addEventListener("click", () => {
+//  //closeModal(addTodoPopupEl);
+//    addTodoPopup.close();
+//});
 
 addTodoForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
@@ -76,7 +88,8 @@ addTodoForm.addEventListener("submit", (evt) => {
   const values = { name, date, id };
   //renderTodo(values); //use addItem method instead
   addItem(values); // check to see if correct
-  closeModal(addTodoPopupEl);
+  //closeModal(addTodoPopupEl);
+  addTodoPopup.close();
   newTodoValidator.resetValidation();
 });
 

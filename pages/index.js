@@ -15,7 +15,25 @@ const todosList = document.querySelector(".todos__list");
 
 const addTodoPopup = new PopupWithForm({
   popupSelector: "#add-todo-popup",
-  handleFormSubmit: () => {},
+  handleFormSubmit: (data) => {
+    // TODO - move code from exisiting submission handler to here
+    //console.log(evt.target.name.value);
+    //console.log(evt.target.date.value);
+    const name = data.name;
+    const dateInput = data.date;
+
+    // Create a date object and adjust for timezone
+    const date = new Date(dateInput);
+    date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
+
+    const id = uuidv4();
+    const values = { name, date, id };
+    //renderTodo(values); //use addItem method instead
+    addItem(values); // check to see if correct
+    //closeModal(addTodoPopupEl);
+    addTodoPopup.close();
+    newTodoValidator.resetValidation();
+  },
 });
 addTodoPopup.setEventListeners();
 
@@ -75,23 +93,23 @@ addTodoButton.addEventListener("click", () => {
 //    addTodoPopup.close();
 //});
 
-addTodoForm.addEventListener("submit", (evt) => {
-  evt.preventDefault();
-  const name = evt.target.name.value;
-  const dateInput = evt.target.date.value;
-
-  // Create a date object and adjust for timezone
-  const date = new Date(dateInput);
-  date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
-
-  const id = uuidv4();
-  const values = { name, date, id };
-  //renderTodo(values); //use addItem method instead
-  addItem(values); // check to see if correct
-  //closeModal(addTodoPopupEl);
-  addTodoPopup.close();
-  newTodoValidator.resetValidation();
-});
+//addTodoForm.addEventListener("submit", (evt) => {
+//  evt.preventDefault();
+//  const name = evt.target.name.value;
+//  const dateInput = evt.target.date.value;
+//
+//  // Create a date object and adjust for timezone
+//  const date = new Date(dateInput);
+//  date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
+//
+//  const id = uuidv4();
+//  const values = { name, date, id };
+//  //renderTodo(values); //use addItem method instead
+//  addItem(values); // check to see if correct
+//  //closeModal(addTodoPopupEl);
+//  addTodoPopup.close();
+//  newTodoValidator.resetValidation();
+//});
 
 const newTodoValidator = new FormValidator(validationConfig, addTodoForm);
 

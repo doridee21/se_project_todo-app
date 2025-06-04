@@ -1,5 +1,3 @@
-//import Popup from "./Popup.js";
-
 class Popup {
   constructor({ popupSelector }) {
     this._popupElement = document.querySelector(popupSelector);
@@ -10,16 +8,11 @@ class Popup {
 
   _handleEscapeClose(evt) {
     if (evt.key === "Escape") {
-      //console.log("escape was pressed");
-      // find the currently opened modal
-      // and close it
       this.close();
     }
   }
 
   _handleOverlayClick(evt) {
-    console.log("Overlay was pressed");
-    // Check if the click target is the popup element itself (the overlay)
     if (evt.target === this._popupElement) {
       this.close();
     }
@@ -33,10 +26,7 @@ class Popup {
   }
 
   close() {
-    // TODO - remove the class from the popup element
     this._popupElement.classList.remove("popup_visible");
-    // TODO - remove the escape listener
-    /*this._popupElement.classList.remove("#add-todo-popup");*/
     document.removeEventListener("keydown", this._handleEscapeClose);
   }
 

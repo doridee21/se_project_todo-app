@@ -33,16 +33,6 @@ class Todo {
     });
   }
 
-  //_setEventListeners() {
-  //  this._todoDeleteBtn.addEventListener("click", () => {
-  //    this._todoElement.remove();
-  //  });
-  //
-  //  this._todoCheckboxEl.addEventListener("change", () => {
-  //    this._data.complated = !this._completed;
-  //  });
-  //}
-
   _generateCheckboxEl() {
     this._todoCheckboxEl = this._todoElement.querySelector(".todo__completed");
     this._todoLabel = this._todoElement.querySelector(".todo__label");

@@ -57,19 +57,11 @@ const addItem = (item) => {
 
 const todoList = new Section({
   items: initialTodos,
-  renderer: (item) => {
-    const todo = generateTodo(item);
-    todosList.append(todo);
-  },
+  renderer: addItem,
   containerSelector: ".todos__list",
 });
 
 todoList.renderItems();
-
-const renderTodo = (item) => {
-  const todo = generateTodo(item);
-  todosList.append(todo);
-};
 
 addTodoButton.addEventListener("click", () => {
   addTodoPopup.open();
